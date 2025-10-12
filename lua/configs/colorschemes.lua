@@ -1,1 +1,1 @@
-vim.cmd [[colorscheme customStealth]]
+vim.cmd [[colorscheme ColdWinter]]

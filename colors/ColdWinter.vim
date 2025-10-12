@@ -1,5 +1,4 @@
-" Maintainer: Nomix17 
-" Last Change: 2025-10-11
+" Maintainer: Nomix18 
 
 " Reset all highlighting to start fresh
 hi clear
@@ -8,72 +7,88 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "customStealth"
+let g:colors_name = "ColdWinter"
 set background=dark
 
 " ============================================================================
-" COLOR PALETTE
+" COLOR PALETTE - DARK BACKGROUNDS WITH NORDIC BLUE ACCENTS
 " ============================================================================
 " Define all colors in one place for easy modification
 
-" Background & UI Colors
+" Background & UI Colors (very dark)
 let s:bg = {
-  \ 'primary':      '#0d0e0f',
-  \ 'highlight':    '#141617',
-  \ 'subtle':       '#191b1d',
-  \ 'selection':    '#333536',
+  \ 'primary':      '#040507',
+  \ 'highlight':    '#111213',
+  \ 'subtle':       '#161718',
+  \ 'selection':    '#2d3439',
+  \ 'active_tab':   '#040507',
+  \ 'tab':          '#0d1016',
   \ }
 
-" Foreground & Text Colors (Brightness Hierarchy)
+" Nordic Blue Palette (calm, muted blues)
+let s:nordic = {
+  \ 'ice':          '#c8d5e0',
+  \ 'frost':        '#a8bcc9',
+  \ 'sky':          '#8fa9bb',
+  \ 'ocean':        '#7a98ad',
+  \ 'deep':         '#6688a0',
+  \ 'midnight':     '#5d7a92',
+  \ 'steel':        '#556b7f',
+  \ 'shadow':       '#4a5c6d',
+  \ }
+
+" Foreground & Text Colors (with blue tints)
 let s:fg = {
-  \ 'brightest':    '#a0a7ae',
-  \ 'bright':       '#9da3aa',
-  \ 'normal':       '#7a8088',
-  \ 'dim':          '#6a7179',
-  \ 'dimmer':       '#5d6268',
-  \ 'dimmest':      '#4a4f55',
+  \ 'brightest':    '#d0d8e0',
+  \ 'bright':       '#bfc8d2',
+  \ 'normal':       '#9ca8b5',
+  \ 'dim':          '#8a96a3',
+  \ 'dimmer':       '#788592',
+  \ 'dimmest':      '#687480',
   \ }
 
-" Syntax Element Colors (Organized by importance)
+" Syntax Element Colors (Nordic-inspired)
 let s:syntax = {
-  \ 'keyword':      '#9da3aa',
-  \ 'constant':     '#969ca3',
-  \ 'number':       '#8a9099',
-  \ 'type':         '#858c93',
-  \ 'function':     '#7d848c',
-  \ 'string':       '#6b7178',
-  \ 'variable':     '#6a7179',
-  \ 'parameter':    '#6e757d',
-  \ 'comment':      '#3d4247',
+  \ 'keyword':      '#a8bcc9',
+  \ 'constant':     '#8fa9bb',
+  \ 'number':       '#7a98ad',
+  \ 'type':         '#6688a0',
+  \ 'function':     '#9ca8b5',
+  \ 'string':       '#91a6b8',
+  \ 'variable':     '#889aac',
+  \ 'parameter':    '#7d92a6',
+  \ 'comment':      '#4a5c6d',
   \ }
 
 " Special Purpose Colors
 let s:special = {
-  \ 'punctuation':       '#4a4f55',
-  \ 'punct_special':     '#5d6268',
-  \ 'tag':              '#555b61',
-  \ 'tag_attr':         '#686e75',
-  \ 'library_func':     '#757c84',
-  \ 'library_const':    '#8a9099',
-  \ 'class_name':       '#969ca3',
-  \ 'storage':          '#9da3aa',
+  \ 'punctuation':       '#687480',
+  \ 'punct_special':     '#788592',
+  \ 'tag':              '#556b7f',
+  \ 'tag_attr':         '#7a98ad',
+  \ 'library_func':     '#8fa9bb',
+  \ 'library_const':    '#7a98ad',
+  \ 'class_name':       '#a8bcc9',
+  \ 'storage':          '#a8bcc9',
   \ }
 
 " UI Element Colors
 let s:ui = {
-  \ 'cursor':           '#f8f8f0',
+  \ 'cursor':           '#ffffff',
   \ 'white':            '#ffffff',
-  \ 'line_number':      '#484d53',
-  \ 'indent_guide':     '#25272a',
-  \ 'error':            '#b87270',
-  \ 'error_bg':         '#664e4d',
+  \ 'line_number':      '#4a5c6d',
+  \ 'indent_guide':     '#1a1d20',
+  \ 'notify':           '#2f373f',
+  \ 'error':            '#d89090',
+  \ 'error_bg':         '#8a6868',
+  \ 'warning':          '#d0b080',
   \ }
 
-" Diff Colors
+" Diff Colors (with blue tints)
 let s:diff = {
-  \ 'deleted':      '#9e6260',
-  \ 'inserted':     '#375963',
-  \ 'changed':      '#213338',
+  \ 'deleted':      '#c87c7a',
+  \ 'inserted':     '#6a95a5',
+  \ 'changed':      '#7a98ad',
   \ }
 
 " ============================================================================
@@ -104,32 +119,32 @@ call s:hi('Normal',        s:fg.normal,      s:bg.primary,     '')
 call s:hi('Cursor',        s:bg.primary,     s:ui.cursor,      '')
 call s:hi('CursorLine',    '',               s:bg.highlight,   '')
 call s:hi('LineNr',        s:ui.line_number, s:bg.primary,     '')
-call s:hi('CursorLineNr',  s:fg.brightest,   s:bg.highlight,   '')
+call s:hi('CursorLineNr',  s:nordic.frost,   s:bg.highlight,   'bold')
 call s:hi('Visual',        s:ui.white,       s:bg.selection,   '')
 call s:hi('VertSplit',     s:ui.indent_guide, s:ui.indent_guide, '')
-call s:hi('MatchParen',    s:ui.white,       s:special.tag,    'bold')
-call s:hi('StatusLine',    s:ui.white,       s:bg.highlight,   '')
-call s:hi('StatusLineNC',  s:fg.normal,      '#101010',        '')
-call s:hi('Pmenu',         s:fg.normal,      '#1e1e1e',        '')
-call s:hi('PmenuSel',      s:bg.primary,     s:syntax.keyword, '')
-call s:hi('Search',        s:bg.primary,     s:fg.brightest,   '')
-call s:hi('IncSearch',     s:bg.primary,     s:ui.white,       '')
+call s:hi('MatchParen',    s:nordic.ice,     s:nordic.shadow,  'bold')
+call s:hi('StatusLine',    s:nordic.frost,   s:bg.highlight,   '')
+call s:hi('StatusLineNC',  s:fg.dimmer,      s:bg.subtle,      '')
+call s:hi('Pmenu',         s:fg.normal,      s:bg.subtle,      '')
+call s:hi('PmenuSel',      s:bg.primary,     s:nordic.sky,     'bold')
+call s:hi('Search',        s:bg.primary,     s:nordic.ocean,   '')
+call s:hi('IncSearch',     s:bg.primary,     s:nordic.frost,   'bold')
 call s:hi('ColorColumn',   '',               s:bg.highlight,   '')
 call s:hi('SignColumn',    s:fg.normal,      s:bg.primary,     '')
 call s:hi('Folded',        s:syntax.comment, s:bg.subtle,      '')
 call s:hi('FoldColumn',    s:syntax.comment, s:bg.primary,     '')
 call s:hi('NonText',       s:ui.indent_guide, '',              '')
 call s:hi('SpecialKey',    s:ui.indent_guide, '',              '')
-call s:hi('Title',         s:fg.brightest,   '',               'bold')
-call s:hi('ModeMsg',       s:fg.normal,      'NONE',           '')
-call s:hi('ErrorMsg',      s:ui.error,       'NONE',           '')
-call s:hi('WarningMsg',    s:ui.error,       'NONE',           '')
+call s:hi('Title',         s:nordic.ice,     '',               'bold')
+call s:hi('ModeMsg',       s:nordic.sky,     'NONE',           '')
+call s:hi('ErrorMsg',      s:ui.error,       'NONE',           'bold')
+call s:hi('WarningMsg',    s:ui.warning,     'NONE',           '')
 
 " Diff highlighting
-call s:hi('DiffAdd',       '',               '#a7da1e22',      '')
-call s:hi('DiffDelete',    s:ui.error_bg,    s:bg.primary,     '')
-call s:hi('DiffChange',    '',               '#f7b83d22',      '')
-call s:hi('DiffText',      '',               '#f7b83d44',      '')
+call s:hi('DiffAdd',       '',               '#6a95a522',      '')
+call s:hi('DiffDelete',    s:diff.deleted,   s:bg.primary,     '')
+call s:hi('DiffChange',    '',               '#7a98ad22',      '')
+call s:hi('DiffText',      '',               '#7a98ad44',      'bold')
 
 " ============================================================================
 " CORE SYNTAX
@@ -145,9 +160,9 @@ call s:hi('PreProc',       s:special.storage, '',               '')
 call s:hi('Type',          s:syntax.type,     '',               '')
 call s:hi('Structure',     s:syntax.type,     '',               'bold')
 call s:hi('Special',       s:special.library_func, '',          '')
-call s:hi('Underlined',    s:syntax.type,     '',               'underline')
+call s:hi('Underlined',    s:nordic.sky,      '',               'underline')
 call s:hi('Error',         s:ui.error,        'NONE',           '')
-call s:hi('Todo',          s:fg.brightest,    '',               'bold')
+call s:hi('Todo',          s:nordic.ice,      s:bg.subtle,      'bold')
 call s:hi('Identifier',    s:syntax.variable, '',               '')
 call s:hi('Function',      s:syntax.function, '',               '')
 
@@ -161,9 +176,11 @@ call s:hi('@lsp.type.parameter', s:syntax.parameter, '',  '')
 call s:hi('@lsp.type.function',  s:syntax.function,  '',  '')
 call s:hi('@lsp.type.method',    s:syntax.function,  '',  '')
 call s:hi('@lsp.type.class',     s:special.class_name, '', 'bold')
-call s:hi('@lsp.type.namespace', s:syntax.type,      '',  '')
+call s:hi('@lsp.type.namespace', s:nordic.ocean,     '',  '')
 call s:hi('@lsp.type.keyword',   s:syntax.keyword,   '',  'bold')
 call s:hi('@lsp.type.macro',     s:special.storage,  '',  '')
+call s:hi('@lsp.type.interface', s:nordic.sky,       '',  'bold')
+call s:hi('@lsp.type.enum',      s:syntax.constant,  '',  'bold')
 
 " ============================================================================
 " PUNCTUATION
@@ -183,7 +200,7 @@ call s:hi('StealthPunctuationList',    s:special.punct_special, '',  '')
 call s:hi('StealthPunctuationAngle',   s:special.punct_special, '',  '')
 call s:hi('StealthPunctuationSep',     s:special.punct_special, '',  '')
 call s:hi('StealthPunctuationTerm',    s:special.punct_special, '',  '')
-call s:hi('StealthPunctuationAccess',  s:special.punct_special, '',  '')
+call s:hi('StealthPunctuationAccess',  s:nordic.shadow,         '',  '')
 call s:hi('StealthPunctuationComment', s:syntax.comment,        '',  '')
 call s:hi('StealthPunctuationBasic',   s:special.punctuation,   '',  '')
 
@@ -193,16 +210,19 @@ call s:hi('StealthPunctuationBasic',   s:special.punctuation,   '',  '')
 
 call s:hi('htmlTag',     s:special.tag,      '',  '')
 call s:hi('htmlEndTag',  s:special.tag,      '',  '')
-call s:hi('htmlTagName', s:special.tag,      '',  'bold')
+call s:hi('htmlTagName', s:nordic.sky,       '',  'bold')
 call s:hi('htmlArg',     s:special.tag_attr, '',  '')
+call s:hi('htmlString',  s:syntax.string,    '',  '')
 
 " ============================================================================
-" JAVASCRIPT
+" JAVASCRIPT/TYPESCRIPT
 " ============================================================================
 
 call s:hi('javaScriptFunction', s:syntax.keyword, '',  'bold')
 call s:hi('javaScriptBraces',   s:special.punctuation, '', '')
 call s:hi('javaScriptNumber',   s:syntax.number,  '',  '')
+call s:hi('typescriptImport',   s:nordic.ocean,   '',  'bold')
+call s:hi('typescriptExport',   s:nordic.ocean,   '',  'bold')
 
 " ============================================================================
 " CSS
@@ -211,6 +231,7 @@ call s:hi('javaScriptNumber',   s:syntax.number,  '',  '')
 call s:hi('cssBraces',    s:special.punctuation, '',  '')
 call s:hi('cssClassName', s:special.class_name,  '',  '')
 call s:hi('cssColor',     s:syntax.number,       '',  '')
+call s:hi('cssProp',      s:nordic.sky,          '',  '')
 
 " ============================================================================
 " RUBY
@@ -219,14 +240,14 @@ call s:hi('cssColor',     s:syntax.number,       '',  '')
 call s:hi('rubyClass',               s:syntax.keyword,         '',  'bold')
 call s:hi('rubyFunction',            s:syntax.function,        '',  '')
 call s:hi('rubyInterpolationDelimiter', s:special.punct_special, '', '')
-call s:hi('rubySymbol',              s:syntax.constant,        '',  '')
+call s:hi('rubySymbol',              s:nordic.ocean,           '',  '')
 call s:hi('rubyConstant',            s:special.class_name,     '',  'bold')
 call s:hi('rubyStringDelimiter',     s:special.punctuation,    '',  '')
 call s:hi('rubyBlockParameter',      s:syntax.parameter,       '',  '')
 call s:hi('rubyInstanceVariable',    s:syntax.variable,        '',  '')
 call s:hi('rubyInclude',             s:syntax.keyword,         '',  'bold')
 call s:hi('rubyGlobalVariable',      s:syntax.constant,        '',  '')
-call s:hi('rubyRegexp',              s:syntax.string,          '',  '')
+call s:hi('rubyRegexp',              s:nordic.deep,            '',  '')
 call s:hi('rubyRegexpDelimiter',     s:special.punctuation,    '',  '')
 call s:hi('rubyEscape',              s:special.punct_special,  '',  '')
 call s:hi('rubyControl',             s:syntax.keyword,         '',  'bold')
@@ -236,22 +257,30 @@ call s:hi('rubyException',           s:syntax.keyword,         '',  'bold')
 call s:hi('rubyPseudoVariable',      s:syntax.constant,        '',  '')
 
 " ============================================================================
+" PYTHON
+" ============================================================================
+
+call s:hi('pythonImport',    s:nordic.ocean,   '',  'bold')
+call s:hi('pythonBuiltin',   s:nordic.sky,     '',  '')
+call s:hi('pythonDecorator', s:nordic.deep,    '',  '')
+
+" ============================================================================
 " MARKDOWN
 " ============================================================================
 
-call s:hi('markdownH1',              s:fg.brightest,        '',  'bold')
-call s:hi('markdownH2',              s:syntax.constant,     '',  'bold')
-call s:hi('markdownH3',              s:syntax.constant,     '',  'bold')
-call s:hi('markdownH4',              s:syntax.type,         '',  'bold')
-call s:hi('markdownH5',              s:syntax.type,         '',  'bold')
-call s:hi('markdownH6',              s:syntax.type,         '',  'bold')
+call s:hi('markdownH1',              s:nordic.ice,          '',  'bold')
+call s:hi('markdownH2',              s:nordic.frost,        '',  'bold')
+call s:hi('markdownH3',              s:nordic.sky,          '',  'bold')
+call s:hi('markdownH4',              s:nordic.ocean,        '',  'bold')
+call s:hi('markdownH5',              s:nordic.deep,         '',  'bold')
+call s:hi('markdownH6',              s:nordic.midnight,     '',  'bold')
 call s:hi('markdownHeadingDelimiter', s:special.punctuation, '', '')
-call s:hi('markdownBold',            s:fg.normal,           '',  'bold')
+call s:hi('markdownBold',            s:fg.bright,           '',  'bold')
 call s:hi('markdownItalic',          s:fg.normal,           '',  'italic')
-call s:hi('markdownCode',            s:syntax.string,       '',  '')
-call s:hi('markdownCodeBlock',       s:syntax.string,       '',  '')
-call s:hi('markdownLinkText',        s:syntax.type,         '',  'underline')
-call s:hi('markdownUrl',             s:syntax.comment,      '',  'underline')
+call s:hi('markdownCode',            s:syntax.string,       s:bg.subtle, '')
+call s:hi('markdownCodeBlock',       s:syntax.string,       s:bg.subtle, '')
+call s:hi('markdownLinkText',        s:nordic.sky,          '',  'underline')
+call s:hi('markdownUrl',             s:nordic.shadow,       '',  'underline')
 
 " ============================================================================
 " GIT
@@ -272,7 +301,7 @@ call s:hi('cppStorageClass', s:special.storage,        '',  'bold')
 call s:hi('cppStructure',    s:syntax.type,            '',  'bold')
 call s:hi('cppException',    s:syntax.keyword,         '',  'bold')
 call s:hi('cppOperator',     s:special.punct_special,  '',  '')
-call s:hi('cppCast',         s:syntax.keyword,         '',  '')
+call s:hi('cppCast',         s:nordic.ocean,           '',  '')
 call s:hi('cppBoolean',      s:syntax.constant,        '',  '')
 call s:hi('cppConstant',     s:syntax.constant,        '',  '')
 call s:hi('cppModifier',     s:syntax.keyword,         '',  '')
@@ -384,26 +413,53 @@ au FileType javascript,typescript,jsx,tsx,css,scss,less,php,python,ruby,go,rust,
 au FileType javascript,typescript,jsx,tsx,css,scss,less,php,python,ruby,go,rust,java,c,cpp syntax match StealthColon /:/ containedin=ALL
 
 " ============================================================================
-" TERMINAL COLORS
+" TAB/BUFFER HIGHLIGHTING
+" ============================================================================
+
+call s:hi('BufferCurrent',        s:ui.white,    s:bg.active_tab, '')
+call s:hi('BufferCurrentMod',     s:ui.notify,    s:bg.tab, '')
+call s:hi('BufferCurrentSign',    s:nordic.sky,  s:bg.tab, '')
+call s:hi('BufferCurrentTarget',  s:ui.error,    s:bg.tab, 'bold')
+
+call s:hi('BufferVisible',        s:fg.normal,   s:bg.tab, '')
+call s:hi('BufferVisibleMod',     s:ui.notify,   s:bg.tab, '')
+call s:hi('BufferVisibleSign',    s:fg.dim,      s:bg.tab, '')
+call s:hi('BufferVisibleTarget',  s:ui.error,    s:bg.tab, 'bold')
+
+call s:hi('BufferInactive',       s:fg.dim,      s:bg.tab, '')
+call s:hi('BufferInactiveMod',    s:ui.notify,      s:bg.tab, '')
+call s:hi('BufferInactiveSign',   s:fg.dimmer,   s:bg.tab, '')
+call s:hi('BufferInactiveTarget', s:ui.error,    s:bg.tab, 'bold')
+
+call s:hi('BufferTabpages',       s:nordic.sky,  s:bg.tab, 'bold')
+call s:hi('BufferTabpageFill',    '',            s:bg.tab, '')
+
+" Standard Vim tab highlighting
+call s:hi('TabLine',              s:fg.normal,   s:bg.tab, '')
+call s:hi('TabLineFill',          '',            s:bg.tab, '')
+call s:hi('TabLineSel',           s:ui.white,    s:bg.tab, 'bold')
+
+" ============================================================================
+" TERMINAL COLORS (Nordic palette)
 " ============================================================================
 
 if has('nvim')
-  let g:terminal_color_0  = '#191b1d'
-  let g:terminal_color_1  = '#9e6260'
-  let g:terminal_color_2  = '#6b7178'
-  let g:terminal_color_3  = '#8a9099'
-  let g:terminal_color_4  = '#858c93'
-  let g:terminal_color_5  = '#969ca3'
-  let g:terminal_color_6  = '#7a8088'
-  let g:terminal_color_7  = '#9da3aa'
-  let g:terminal_color_8  = '#3d4247'
-  let g:terminal_color_9  = '#b87270'
-  let g:terminal_color_10 = '#7d848c'
-  let g:terminal_color_11 = '#969ca3'
-  let g:terminal_color_12 = '#9da3aa'
-  let g:terminal_color_13 = '#a0a7ae'
-  let g:terminal_color_14 = '#8a9099'
-  let g:terminal_color_15 = '#b0b7be'
+  let g:terminal_color_0  = '#0a0b0c'
+  let g:terminal_color_1  = '#c87c7a'
+  let g:terminal_color_2  = '#6a95a5'
+  let g:terminal_color_3  = '#7a98ad'
+  let g:terminal_color_4  = '#8fa9bb'
+  let g:terminal_color_5  = '#a8bcc9'
+  let g:terminal_color_6  = '#91a6b8'
+  let g:terminal_color_7  = '#bfc8d2'
+  let g:terminal_color_8  = '#4a5c6d'
+  let g:terminal_color_9  = '#d89090'
+  let g:terminal_color_10 = '#7a98ad'
+  let g:terminal_color_11 = '#8fa9bb'
+  let g:terminal_color_12 = '#a8bcc9'
+  let g:terminal_color_13 = '#c8d5e0'
+  let g:terminal_color_14 = '#91a6b8'
+  let g:terminal_color_15 = '#d0d8e0'
 endif
 
 " Low color terminal support

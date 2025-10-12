@@ -9,7 +9,7 @@ vim.opt.tabstop = 2
 vim.opt.autoindent = true
 vim.wo.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
-vim.g.airline_theme = 'minimalist_gray'
+vim.g.airline_theme = 'coldWinter'
 vim.g.airline_powerline_fonts = 1
 
 
@@ -57,4 +57,37 @@ require("nvim-tree").setup({
   },
 })
 
+require'barbar'.setup {
+  icons = {
+    separator = {left = '', right = ''},
+    inactive = {separator = {left = '', right = ''}},
+  },
+  
+  animation = true,
+  
+  clickable = true,
+}
 
+local hooks = require "ibl.hooks"
+
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#474646" })
+end)
+
+require("ibl").setup({
+  indent = {
+
+    char ="┊",
+
+    -- char = "┃",
+    
+    -- char = "│",
+
+    highlight = { "IndentBlanklineChar" }
+  },
+  scope = {
+    enabled = true,
+    show_start = true,
+    show_end = false,
+  },
+})
