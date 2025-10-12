@@ -1,36 +1,49 @@
-" Normal Mode - Subtle medium gray
-let s:N1 = [ '#9da3aa', '#161718', 248, 235 ]
-let s:N2 = [ '#7a8088', '#2f373f', 244, 237 ]
-let s:N3 = [ '#6a7179', '#0d1016', 242, 234 ]
+" ========================
+" ColdWinter (Enhanced + Rounded)
+" ========================
 
-" Insert Mode - Brighter for active editing
-let s:I1 = [ '#0d0e0f', '#9da3aa', 232, 248 ]
-let s:I2 = [ '#7a8088', '#0d1016', 244, 237 ]
+" Enable Powerline / Nerd Font symbols
+let g:airline_powerline_fonts = 1
+
+" Optional: match padding so edges don't clip
+
+" ========================
+" Palette definition
+" ========================
+
+" Normal Mode – Balanced cold gray, default calm tone
+let s:N1 = [ '#a8b0ba', '#101214', 250, 235 ]
+let s:N2 = [ '#8d949c', '#1e2328', 246, 236 ]
+let s:N3 = [ '#70777f', '#0c0e11', 243, 234 ]
+
+" Insert Mode – Brighter ice-gray, for clarity during typing
+let s:I1 = [ '#0d0e0f', '#b8c4d1', 232, 252 ]
+let s:I2 = [ '#97a1ad', '#16181c', 247, 235 ]
 let s:I3 = s:N3
 
-" Visual Mode - Mid-tone gray
-let s:V1 = [ '#0d0e0f', '#858c93', 232, 246 ]
-let s:V2 = [ '#7a8088', '#0d1016', 244, 237 ]
+" Visual Mode – Muted steel-blue for selection
+let s:V1 = [ '#0d0e0f', '#93a8c4', 232, 110 ]
+let s:V2 = [ '#87909b', '#121418', 245, 234 ]
 let s:V3 = s:N3
 
-" Command Mode - Brightest for commands
-let s:C1 = [ '#0d0e0f', '#b5bec9', 232, 249 ]
-let s:C2 = [ '#7a8088', '#3a3a3a', 244, 237 ]
-let s:C3 = [ '#6a7179', '#0d1016', 242, 234 ]
+" Command Mode – Frosted bright tone for attention
+let s:C1 = [ '#0d0e0f', '#c9d5e2', 232, 189 ]
+let s:C2 = [ '#9ba3ad', '#1a1d22', 247, 235 ]
+let s:C3 = [ '#7a8189', '#0d1014', 243, 234 ]
 
-" Replace Mode - Slightly darker
-let s:R1 = [ '#0d0e0f', '#7d848c', 232, 245 ]
-let s:R2 = [ '#7a8088', '#3a3a3a', 244, 237 ]
+" Replace Mode – Deeper steel-gray with slight blue edge
+let s:R1 = [ '#0d0e0f', '#8fa0b2', 232, 110 ]
+let s:R2 = [ '#828b96', '#202429', 245, 236 ]
 let s:R3 = s:N3
 
-" Inactive Mode - Very dim
-let s:IA = [ '#4a4f55', s:N3[1], 239, s:N3[3] ]
+" Inactive Mode – Dim cool tone for background
+let s:IA = [ '#4a5057', s:N3[1], 239, s:N3[3] ]
 
-" Warning Mode - Noticeable but subtle
-let s:WI = [ '#0d0e0f', '#8a9099', 232, 247 ]
+" Warning Mode – Muted icy amber, still cold
+let s:WI = [ '#0d0e0f', '#101214', 232, 179 ]
 
-" Error Mode - Subdued red tint
-let s:ER = [ '#0d0e0f', '#ffffff', 232, 131 ]
+" Error Mode – Cold desaturated red-violet tint
+let s:ER = [ '#0d0e0f', '#4a5057', 232, 132 ]
 
 " Terminal Mode
 let s:TE = [ s:WI[0], s:N1[1], s:N1[2], s:N1[3] ]
@@ -38,9 +51,11 @@ let s:TE = [ s:WI[0], s:N1[1], s:N1[2], s:N1[3] ]
 " Reverse Mode
 let s:NR = [ s:N2[1], s:N2[0], s:N2[3], s:N2[2], 'bold' ]
 
-let g:airline#themes#coldWinter#palette = {}
+" ========================
+" Palette registration
+" ========================
 
-" Generate mode-specific palettes
+let g:airline#themes#coldWinter#palette = {}
 let g:airline#themes#coldWinter#palette.normal   = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 let g:airline#themes#coldWinter#palette.insert   = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 let g:airline#themes#coldWinter#palette.visual   = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
@@ -48,7 +63,7 @@ let g:airline#themes#coldWinter#palette.commandline = airline#themes#generate_co
 let g:airline#themes#coldWinter#palette.replace  = airline#themes#generate_color_map(s:R1, s:R2, s:R3)
 let g:airline#themes#coldWinter#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
 
-" Status indicators for all modes
+" Indicators
 let g:airline#themes#coldWinter#palette.normal.airline_warning  = s:WI
 let g:airline#themes#coldWinter#palette.normal.airline_error    = s:ER
 let g:airline#themes#coldWinter#palette.normal.airline_term     = s:TE
