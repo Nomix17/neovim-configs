@@ -40,7 +40,7 @@ let s:R3 = s:N3
 let s:IA = [ '#4a5057', s:N3[1], 239, s:N3[3] ]
 
 " Warning Mode – Muted icy amber, still cold
-let s:WI = [ '#0d0e0f', '#101214', 232, 179 ]
+let s:WI = [ '#0d0e0f', '#4a5057', 232, 179 ]
 
 " Error Mode – Cold desaturated red-violet tint
 let s:ER = [ '#0d0e0f', '#4a5057', 232, 132 ]

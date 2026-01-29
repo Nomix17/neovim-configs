@@ -1,36 +1,91 @@
-local blink = require'blink.cmp'
+-- LSP Configuration for Neovim
+-- This file sets up LSP servers, completion (nvim-cmp), and related keymaps
 
-blink.setup({
-  appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = 'mono' },
-  completion = {
-    accept = { auto_brackets = { enabled = true } },
-    documentation = { auto_show = true, auto_show_delay_ms = 250, treesitter_highlighting = true },
-    auto_show = true,
-    auto_accept = false,
-    debounce_ms = 100,
-    ghost_text = { enabled = false },
+-- Setup nvim-cmp (completion engine)
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+-- Set custom highlight for completion menu
+vim.api.nvim_set_hl(0, 'CmpNormal', { fg = '#bfc8d2', bg = '#252d35' })
+vim.api.nvim_set_hl(0, 'CmpBorder', { fg = '#4a5c6d', bg = '#252d35' })
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
   },
-  sources = { default = { 'lsp', 'path', 'buffer' } },
-  snippets = { preset = 'luasnip' },
-  signature = { enabled = true },
-  keymap = {
-    ['<A-l>'] = { 'select_and_accept', 'fallback' },
-    ['<A-j>'] = { 'select_next', 'fallback' },
-    ['<A-k>'] = { 'select_prev', 'fallback' },
-    ['<A-e>'] = { 'hide' },
+  window = {
+    completion = {
+      border = 'rounded',
+      winhighlight = 'Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
+    },
+    documentation = {
+      border = 'rounded',
+      winhighlight = 'Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None',
+    },
   },
+  mapping = cmp.mapping.preset.insert({
+    ['<A-j>'] = cmp.mapping.select_next_item(),
+    ['<A-k>'] = cmp.mapping.select_prev_item(),
+    ['<A-l>'] = cmp.mapping.confirm({ select = true }),
+    ['<A-e>'] = cmp.mapping.abort(),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'path' },
+  }, {
+    { name = 'buffer' },
+  }),
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, blink.get_lsp_capabilities())
+-- Setup LSP capabilities with nvim-cmp
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- Setup Mason (LSP installer)
 require("mason").setup()
-require("mason-lspconfig").setup({ automatic_installation = true })
+require("mason-lspconfig").setup({ 
+  automatic_installation = true 
+})
 
+-- Setup LSP keymaps when a language server attaches to a buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buf, noremap = true, silent = true }
+    
+    -- LSP navigation keymaps
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, opts)
+    
+    -- LSP actions
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>f', function()
+      vim.lsp.buf.format({ async = true })
+    end, opts)
+    
+    -- Diagnostics
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+  end,
+})
+
+-- Configure LSP servers
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 local installed_servers = require("mason-lspconfig").get_installed_servers()
 
+-- Setup all installed LSP servers except jdtls (which needs special config)
 for _, server in ipairs(installed_servers) do
   if server ~= "jdtls" then
     lspconfig[server].setup({
@@ -42,6 +97,7 @@ for _, server in ipairs(installed_servers) do
   end
 end
 
+-- Special setup for Java (jdtls) with workspace support
 local jdtls_bin = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/bin/jdtls")
 local workspace_dir = vim.fn.expand("~/.local/share/eclipse/") .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 

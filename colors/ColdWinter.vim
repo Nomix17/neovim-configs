@@ -417,9 +417,9 @@ au FileType javascript,typescript,jsx,tsx,css,scss,less,php,python,ruby,go,rust,
 " ============================================================================
 
 call s:hi('BufferCurrent',        s:ui.white,    s:bg.active_tab, '')
-call s:hi('BufferCurrentMod',     s:ui.notify,    s:bg.tab, '')
-call s:hi('BufferCurrentSign',    s:nordic.sky,  s:bg.tab, '')
-call s:hi('BufferCurrentTarget',  s:ui.error,    s:bg.tab, 'bold')
+call s:hi('BufferCurrentMod',     s:ui.notify,   s:bg.active_tab, '')
+call s:hi('BufferCurrentSign',    s:nordic.sky,  s:bg.active_tab, '')
+call s:hi('BufferCurrentTarget',  s:ui.error,    s:bg.active_tab, 'bold')
 
 call s:hi('BufferVisible',        s:fg.normal,   s:bg.tab, '')
 call s:hi('BufferVisibleMod',     s:ui.notify,   s:bg.tab, '')
@@ -427,7 +427,7 @@ call s:hi('BufferVisibleSign',    s:fg.dim,      s:bg.tab, '')
 call s:hi('BufferVisibleTarget',  s:ui.error,    s:bg.tab, 'bold')
 
 call s:hi('BufferInactive',       s:fg.dim,      s:bg.tab, '')
-call s:hi('BufferInactiveMod',    s:ui.notify,      s:bg.tab, '')
+call s:hi('BufferInactiveMod',    s:ui.notify,   s:bg.tab, '')
 call s:hi('BufferInactiveSign',   s:fg.dimmer,   s:bg.tab, '')
 call s:hi('BufferInactiveTarget', s:ui.error,    s:bg.tab, 'bold')
 

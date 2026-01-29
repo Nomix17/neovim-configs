@@ -16,8 +16,8 @@ map('n', '<C-b>', ':NvimTreeToggle<CR>', opts)
 
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-map('n', '<A-S-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A-S->>', '<Cmd>BufferMoveNext<CR>', opts)
+map('n', '<A-S-,>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A-S-.>', '<Cmd>BufferMoveNext<CR>', opts)
 
 for i = 0, 9 do
   local lhs = i == 0 and "<A-0>" or "<A-" .. i .. ">"
