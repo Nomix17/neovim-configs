@@ -384,6 +384,62 @@ au FileType javascript,typescript,jsx,tsx,css,scss,less,php,python,ruby,go,rust,
 au FileType javascript,typescript,jsx,tsx,css,scss,less,php,python,ruby,go,rust,java,c,cpp syntax match StealthColon /:/ containedin=ALL
 
 " ============================================================================
+" NVIM-CMP COMPLETION MENU
+" ============================================================================
+
+" Completion window background and border
+call s:hi('CmpNormal',     '#bfc8d2', '#161616', '')
+call s:hi('CmpBorder',     '#888888', '#0d0e0f', '')
+
+" Completion item text
+call s:hi('CmpItemAbbr',              '#d0d0d0', '', '')
+call s:hi('CmpItemAbbrDeprecated',    '#666666', '', 'strikethrough')
+call s:hi('CmpItemAbbrMatch',         '#ffffff', '', 'bold')
+call s:hi('CmpItemAbbrMatchFuzzy',    '#e8e8e8', '', '')
+
+" Kind and menu indicators
+call s:hi('CmpItemKind',   '#a0a0a0', '', '')
+call s:hi('CmpItemMenu',   '#606060', '', '')
+
+" Selected item
+call s:hi('PmenuSel',      '#000000', '#848484', 'bold')
+
+" Documentation window
+call s:hi('CmpDoc',        '#d0d0d0', '#1a1a1a', '')
+call s:hi('CmpDocBorder',  '#888888', '#0d0e0f', '')
+
+" Scrollbar
+call s:hi('PmenuSbar',     '',        '#2a2a2a', '')
+call s:hi('PmenuThumb',    '',        '#666666', '')
+
+" Specific completion kinds
+call s:hi('CmpItemKindText',          '#cccccc', '', '')
+call s:hi('CmpItemKindMethod',        '#ffffff', '', '')
+call s:hi('CmpItemKindFunction',      '#ffffff', '', '')
+call s:hi('CmpItemKindConstructor',   '#e8e8e8', '', '')
+call s:hi('CmpItemKindField',         '#d0d0d0', '', '')
+call s:hi('CmpItemKindVariable',      '#d0d0d0', '', '')
+call s:hi('CmpItemKindClass',         '#e8e8e8', '', '')
+call s:hi('CmpItemKindInterface',     '#e8e8e8', '', '')
+call s:hi('CmpItemKindModule',        '#d0d0d0', '', '')
+call s:hi('CmpItemKindProperty',      '#c0c0c0', '', '')
+call s:hi('CmpItemKindUnit',          '#b0b0b0', '', '')
+call s:hi('CmpItemKindValue',         '#b0b0b0', '', '')
+call s:hi('CmpItemKindEnum',          '#d0d0d0', '', '')
+call s:hi('CmpItemKindKeyword',       '#ffffff', '', '')
+call s:hi('CmpItemKindSnippet',       '#a0a0a0', '', '')
+call s:hi('CmpItemKindColor',         '#888888', '', '')
+call s:hi('CmpItemKindFile',          '#c0c0c0', '', '')
+call s:hi('CmpItemKindReference',     '#b0b0b0', '', '')
+call s:hi('CmpItemKindFolder',        '#c0c0c0', '', '')
+call s:hi('CmpItemKindEnumMember',    '#c0c0c0', '', '')
+call s:hi('CmpItemKindConstant',      '#d0d0d0', '', '')
+call s:hi('CmpItemKindStruct',        '#e8e8e8', '', '')
+call s:hi('CmpItemKindEvent',         '#b0b0b0', '', '')
+call s:hi('CmpItemKindOperator',      '#ffffff', '', '')
+call s:hi('CmpItemKindTypeParameter', '#d0d0d0', '', '')
+
+" ============================================================================
 " TERMINAL COLORS
 " ============================================================================
 

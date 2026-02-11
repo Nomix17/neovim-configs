@@ -5,10 +5,6 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
--- Set custom highlight for completion menu
-vim.api.nvim_set_hl(0, 'CmpNormal', { fg = '#bfc8d2', bg = '#252d35' })
-vim.api.nvim_set_hl(0, 'CmpBorder', { fg = '#4a5c6d', bg = '#252d35' })
-
 cmp.setup({
   snippet = {
     expand = function(args)
