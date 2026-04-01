@@ -17,6 +17,14 @@ map('n', '<C-b>', ':NvimTreeToggle<CR>', opts)
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 
+if os.getenv("TMUX") then
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+
+    map('n', '\27<', '<Cmd>BufferMovePrevious<CR>', opts)
+    map('n', '\27>', '<Cmd>BufferMoveNext<CR>', opts)
+end
+
 -- map('n', '<A-S-,>', '<Cmd>BufferMovePrevious<CR>', opts)
 -- map('n', '<A-S-.>', '<Cmd>BufferMoveNext<CR>', opts)
 
@@ -67,8 +75,6 @@ map('v', ']m', ']}', opts)
 
 map('n', '<C-d>', 'ggdG', opts)
 
-
-vim.api.nvim_set_keymap('i', '<A-Space>', 'v:lua.require("blink.cmp").trigger()', { expr = true, noremap = true })
 
 local diagnostics_enabled = true
 
