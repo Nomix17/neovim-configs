@@ -1,4 +1,5 @@
 require('packer').startup(function(use)
+  use 'MeanderingProgrammer/render-markdown.nvim'
   use 'wbthomason/packer.nvim'
   use 'catppuccin/nvim'
   use 'tpope/vim-surround'
