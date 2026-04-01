@@ -108,6 +108,12 @@ lspconfig.jdtls.setup({
     java = {
       signatureHelp = { enabled = true },
       contentProvider = { preferred = "fernflower" },
+
+      project = {
+        referencedLibraries = {
+          "/opt/tomcat-10.1.53/lib/*.jar",
+        },
+      }
     },
   },
 })
