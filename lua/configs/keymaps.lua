@@ -45,8 +45,12 @@ map('n', '<A-S-p>', '<Cmd>BufferPickDelete<CR>', opts)
 map('n', 'q', "~", opts)
 map('v', 'q', "~", opts)
 map('n', '<C-a>', 'ggVG', opts)
+
 map('n', "<", "<<", opts)
 map('n', ">", ">>", opts)
+map("v", ">", ">gv")
+map("v", "<", "<gv")
+
 map('n', ".", "dl", opts)
 map('n', ",", "dh", opts)
 
