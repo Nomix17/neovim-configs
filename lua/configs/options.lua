@@ -12,8 +12,8 @@ vim.wo.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.g.airline_powerline_fonts = 1
 
--- vim.g.airline_theme = 'coldwinter'
-vim.g.airline_theme = 'stealth'
+vim.g.airline_theme = 'coldWinter'
+-- vim.g.airline_theme = 'stealth'
 
 local original_notify = vim.notify
 vim.notify = function(msg, log_level, opts)
