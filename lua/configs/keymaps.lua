@@ -1,11 +1,6 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true, nowait = true }
 
-map('n', '<C-S-j>', '5j', opts)
-map('n', '<C-S-k>', '5k', opts)
-map('v', '<C-S-j>', '5j', opts)
-map('v', '<C-S-k>', '5k', opts)
-
 map('n', '<C-j>', 'gj', opts)
 map('v', '<C-j>', 'gj', opts)
 map('n', '<C-k>', 'gk', opts)
@@ -77,18 +72,11 @@ map('n', ']m', ']}', opts)
 map('v', '[m', '[{', opts)
 map('v', ']m', ']}', opts)
 
-map('n', '<C-d>', 'ggdG', opts)
-
+map('n', '<C-f>', 'za', opts)
+map('v', '<C-f>', 'zf', opts)
 
 local diagnostics_enabled = true
 
 vim.keymap.set('n', '<A-Space>', function()
-  if diagnostics_enabled then
-    vim.diagnostic.disable()
-    diagnostics_enabled = false
-  else
-    vim.diagnostic.enable()
-    diagnostics_enabled = true
-  end
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle LSP error highlighting" })
-

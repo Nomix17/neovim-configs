@@ -22,6 +22,24 @@ require('packer').startup(function(use)
     require("toggleterm").setup()
   end}
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      local status_ok, ts_config = pcall(require, 'nvim-treesitter.configs')
+      if not status_ok then
+        return
+      end
+
+      ts_config.setup {
+        ensure_installed = { "lua", "vim", "vimdoc", "query" }, 
+        highlight = { enable = true },
+      }
+    end
+  }
+
+  use 'karb94/neoscroll.nvim'
+
   -- LSP and Completion
   use 'neovim/nvim-lspconfig'
   use 'L3MON4D3/LuaSnip'
