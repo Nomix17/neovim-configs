@@ -75,8 +75,9 @@ map('v', ']m', ']}', opts)
 map('n', '<C-f>', 'za', opts)
 map('v', '<C-f>', 'zf', opts)
 
-local diagnostics_enabled = true
+map('n', '<C-M>', vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 
+local diagnostics_enabled = true
 vim.keymap.set('n', '<A-Space>', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle LSP error highlighting" })
