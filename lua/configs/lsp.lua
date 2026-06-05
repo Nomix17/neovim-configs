@@ -93,7 +93,6 @@ for _, server in ipairs(installed_servers) do
   end
 end
 
--- Special setup for Java (jdtls) with workspace support
 local jdtls_bin = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls/bin/jdtls")
 local workspace_dir = vim.fn.expand("~/.local/share/eclipse/") .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
@@ -108,12 +107,11 @@ lspconfig.jdtls.setup({
     java = {
       signatureHelp = { enabled = true },
       contentProvider = { preferred = "fernflower" },
-
-      project = {
-        referencedLibraries = {
-          "/opt/tomcat-10.1.53/lib/*.jar",
-        },
-      }
+      eclipse = { downloadSources = true },
+      maven = { downloadSources = true },
+      completion = {
+        importOrder = { "java", "javax", "org", "com" },
+      },
     },
   },
 })
