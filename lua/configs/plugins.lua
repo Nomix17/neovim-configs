@@ -30,9 +30,14 @@ require('packer').startup(function(use)
       if not status_ok then
         return
       end
-
       ts_config.setup {
-        ensure_installed = { "lua", "vim", "vimdoc", "query" }, 
+        ensure_installed = {
+          "c", "cpp", "java", "javascript", "typescript",
+          "python", "bash", "lua", "php",
+          "vim", "vimdoc", "markdown",
+          "markdown_inline"
+        },
+        auto_install = true,
         highlight = { enable = true },
       }
     end
