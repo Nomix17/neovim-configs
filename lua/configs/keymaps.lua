@@ -76,6 +76,7 @@ map('n', '<C-f>', 'za', opts)
 map('v', '<C-f>', 'zf', opts)
 
 map('n', '<C-M>', vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+map('n', '<A-r>', '<cmd>RenderMarkdown toggle<CR>', { desc = 'Toggle Markdown Render' })
 
 local diagnostics_enabled = true
 vim.keymap.set('n', '<A-Space>', function()
