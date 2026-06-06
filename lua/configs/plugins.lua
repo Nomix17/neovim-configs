@@ -1,5 +1,12 @@
 require('packer').startup(function(use)
-  use 'MeanderingProgrammer/render-markdown.nvim'
+  use {
+    'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('render-markdown').setup({})
+    end
+  }
   use 'wbthomason/packer.nvim'
   use 'catppuccin/nvim'
   use 'tpope/vim-surround'
