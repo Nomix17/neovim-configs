@@ -122,7 +122,12 @@ call s:hi('LineNr',        s:ui.line_number, s:bg.primary,     '')
 call s:hi('CursorLineNr',  s:nordic.frost,   s:bg.highlight,   'bold')
 call s:hi('Visual',        s:ui.white,       s:bg.selection,   '')
 call s:hi('VertSplit',     s:ui.indent_guide, s:ui.indent_guide, '')
-call s:hi('MatchParen',    s:nordic.ice,     s:nordic.shadow,  'bold')
+
+call s:hi('MatchParen',    s:fg.brightest,  '',  'bold')
+call s:hi('MatchParenCur', '',              '',  '')
+call s:hi('MatchWord',    s:fg.normal,    "#1e1e1e",    'bold')
+call s:hi('MatchWordCur',  '',              '',  '')
+
 call s:hi('StatusLine',    s:nordic.frost,   s:bg.highlight,   '')
 call s:hi('StatusLineNC',  s:fg.dimmer,      s:bg.subtle,      '')
 call s:hi('Pmenu',         s:fg.normal,      s:bg.subtle,      '')
