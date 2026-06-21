@@ -63,10 +63,16 @@ map('v', 'x', 'd', opts)
 map('n', 'xe', 'de', opts)
 map('n', 'x$', 'd$', opts)
 
-map('n', 'm', '%', opts)
-map('n', 'M', '%', opts)
-map('v', 'm', '%', opts)
-map('v', 'M', '%', opts)
+map('n', 'm', '<plug>(matchup-%)' , opts)
+map('v', 'm', '<plug>(matchup-%)' , opts)
+
+-- map('n', 'm', '%', opts)
+-- map('n', 'M', '%', opts)
+-- map('v', 'm', '%', opts)
+-- map('v', 'M', '%', opts)
+
+
+
 map('n', '[m', '[{', opts)
 map('n', ']m', ']}', opts)
 map('v', '[m', '[{', opts)
@@ -79,6 +85,6 @@ map('n', '<C-M>', vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 map('n', '<A-r>', '<cmd>RenderMarkdown toggle<CR>', { desc = 'Toggle Markdown Render' })
 
 local diagnostics_enabled = true
-vim.keymap.set('n', '<A-Space>', function()
+map('n', '<A-Space>', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle LSP error highlighting" })
