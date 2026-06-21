@@ -10,6 +10,7 @@ vim.opt.tabstop = 2
 vim.opt.autoindent = true
 vim.wo.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.cursorline = true
 vim.g.airline_powerline_fonts = 1
 
 vim.g.airline_theme = 'coldWinter'
