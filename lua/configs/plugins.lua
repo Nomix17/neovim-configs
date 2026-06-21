@@ -19,6 +19,8 @@ require('packer').startup(function(use)
   use 'ryanoasis/vim-devicons'
   use 'mg979/vim-visual-multi'
   use 'romgrk/barbar.nvim'
+  use 'mfussenegger/nvim-jdtls'
+  use 'edluffy/hologram.nvim/'
   -- use 'preservim/nerdtree'
   use 'nvim-tree/nvim-tree.lua'
   use 'rainglow/vim'
