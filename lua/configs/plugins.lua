@@ -25,9 +25,12 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
-  end}
+  use {
+    "akinsho/toggleterm.nvim", tag = '*',
+    config = function()
+      require("toggleterm").setup()
+    end
+  }
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -46,11 +49,13 @@ require('packer').startup(function(use)
         },
         auto_install = true,
         highlight = { enable = true },
+        matchup = { enable = true }
       }
     end
   }
 
   use 'karb94/neoscroll.nvim'
+  use 'andymass/vim-matchup'
 
   -- LSP and Completion
   use 'neovim/nvim-lspconfig'
